@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Admissions - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Admissions 2026</h1>
+        <p class="lead">Join the Global Talent School family today!</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <h2 class="section-title mb-4">Why Enroll at GTS?</h2>
+                
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Quality Education</h5>
+                        <p class="mb-0">Experienced faculty delivering world-class curriculum from Playgroup to Grade 8 (expanding to Grades 9 & 10).</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> English Proficiency</h5>
+                        <p class="mb-0">Comprehensive ESL program building confidence in English communication.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Modern Facilities</h5>
+                        <p class="mb-0">Computer labs, activity rooms, and resources for holistic development.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Personal Development</h5>
+                        <p class="mb-0">Focus on character building, leadership skills, and confidence.</p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm" style="background: #d1e7dd;">
+                    <div class="card-body">
+                        <h5 style="color: #146c43;"><i class="fas fa-info-circle"></i> Admission Requirements</h5>
+                        <ul class="mb-0">
+                            <li>Completed application form</li>
+                            <li>Birth certificate/B-Form copy</li>
+                            <li>Previous school records (if applicable)</li>
+                            <li>School Leaving Certificate</li>
+                            <li>Parent/Guardian CNIC copy</li>
+                            <li>Student's recent passport-size photographs(4)</li>
+                             <li>Medical Certificate</li>
+                             <li>Character Certificate</li>
+                             <li>Admission Fee/ Registration Fee Receipt</li>
+                        </ul>
+                    </div>
+                </div>
+
+                {% if school %}
+                <div class="card border-0 shadow-sm mt-4" style="background: #f8f9fa;">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-phone-alt"></i> Contact for Admissions</h5>
+                        <p class="mb-2"><strong>Phone:</strong> {{ school.phone ?? 'Coming soon' }}</p>
+                        <p class="mb-2"><strong>Email:</strong> {{ school.email ?? 'Coming soon' }}</p>
+                        <p class="mb-0"><strong>WhatsApp:</strong> {{ school.whatsapp ?? 'Coming soon' }}</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+{# 
+            <div class="col-lg-6">
+                <div class="card border-0 shadow">
+                    <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #198754 0%, #146c43 100%);">
+                        <h3 class="mb-0"><i class="fas fa-envelope"></i> Admission Inquiry Form</h3>
+                    </div>
+                    <div class="card-body p-4"> #}
+                      {# {{ form_start(form) }}
+        <h5 class="mb-3" style="color: #198754;">Student Information</h5>
+        <div class="mb-3">{{ form_row(form.student_name) }}</div>
+        <div class="mb-3">{{ form_row(form.grade) }}</div>
+
+        <h5 class="mb-3 mt-4" style="color: #198754;">Parent/Guardian Information</h5>
+        <div class="mb-3">{{ form_row(form.parent_name) }}</div>
+        <div class="mb-3">{{ form_row(form.email) }}</div>
+        <div class="mb-3">{{ form_row(form.phone) }}</div>
+
+        <h5 class="mb-3 mt-4" style="color: #198754;">Additional Information</h5>
+        <div class="mb-3">{{ form_row(form.previous_school) }}</div>
+        <div class="mb-3">{{ form_row(form.comments) }}</div> #}
+
+        {# <div class="alert alert-success">
+            <i class="fab fa-whatsapp"></i> You'll be redirected to WhatsApp after submission
+        </div> #}
+{# 
+<div class="d-flex justify-content-between gap-3">
+    <button type="button" class="btn btn-secondary flex-fill">
+        <i class="fas fa-times me-2"></i> Cancel
+    </button>
+
+    <button type="submit" class="btn btn-primary flex-fill">
+        <i class="fas fa-paper-plane me-2"></i> Submit Application
+    </button>
+</div>#}
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); color: white;">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Join Our Community?</h2>
+        <p class="lead mb-4">Enroll your child today and give them the gift of quality education</p>
+  <button class="btn btn-light btn-lg"
+        data-bs-toggle="modal"
+        data-bs-target="#admissionModal">
+    Apply for Admission
+</button>
+
+       
+    </div>
+</section>
+{% endblock %}
+
+
+{# 
+{% block title %}Admissions - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Admissions 2026</h1>
+        <p class="lead">Join the Global Talent School family today!</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <h2 class="section-title mb-4">Why Enroll at GTS?</h2>
+                
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Quality Education</h5>
+                        <p class="mb-0">Experienced faculty delivering world-class curriculum from Playgroup to Grade 8 (expanding to Grades 9 & 10).</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> English Proficiency</h5>
+                        <p class="mb-0">Comprehensive ESL program building confidence in English communication.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Modern Facilities</h5>
+                        <p class="mb-0">Computer labs, activity rooms, and resources for holistic development.</p>
+                    </div>
+                </div>
+
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 style="color: #198754;"><i class="fas fa-check-circle"></i> Personal Development</h5>
+                        <p class="mb-0">Focus on character building, leadership skills, and confidence.</p>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm" style="background: #d1e7dd;">
+                    <div class="card-body">
+                        <h5 style="color: #146c43;"><i class="fas fa-info-circle"></i> Admission Requirements</h5>
+                        <ul class="mb-0">
+                            <li>Completed application form</li>
+                            <li>Birth certificate copy</li>
+                            <li>Previous school records (if applicable)</li>
+                            <li>Parent/Guardian CNIC copy</li>
+                            <li>Recent passport-size photographs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card border-0 shadow">
+                    <div class="card-header text-white text-center py-4" style="background: linear-gradient(135deg, #198754 0%, #146c43 100%);">
+                        <h3 class="mb-0"><i class="fas fa-envelope"></i> Admission Inquiry Form</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        {{ form_start(form) }}
+                            <div class="mb-3">
+                                {{ form_row(form.message) }}
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Maps -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="section-title mb-4 text-center">Find Us on the Map</h2>
+                <div class="card border-0 shadow">
+                    <div class="card-body p-0">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13165.123456789!2d72.3456789!3d35.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDA3JzI0LjQiTiA3MsKwMjAnNDQuNCJF!5e0!3m2!1sen!2s!4v1234567890123!5m2!1sen!2s" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0; border-radius: 10px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <p class="text-center text-muted mt-2 p-3 mb-0"><small>Note: Please update the Google Maps embed URL with the actual coordinates for Bara Bandai, Swat in the template.</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+{% endblock %}#}

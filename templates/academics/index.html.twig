@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Academics - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Academic Programs</h1>
+        <p class="lead">From Playgroup to Grade 8, with expansion to Grades 9 & 10</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Courses</h2>
+            <p class="lead mt-4">Quality education with activity-based learning, ESL, and computer education</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for course in courses %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    {% if course.image %}
+                    <img src="{{ course.image }}" class="card-img-top" alt="{{ course.title }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                    <div style="height: 250px; background: linear-gradient(135deg, #198754 0%, #146c43 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-book-reader fa-5x text-white"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #198754;">{{ course.title }}</h4>
+                        <p class="card-text">{{ course.description }}</p>
+                        {% if course.note %}
+                        <div class="alert alert-success mt-3" role="alert">
+                            <i class="fas fa-info-circle"></i> {{ course.note }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-10 mx-auto">
+                <div class="card p-4" style="background: linear-gradient(135deg, #d1e7dd 0%, #ffffff 100%); border: none;">
+                    <h3 style="color: #198754;"><i class="fas fa-graduation-cap"></i> Grade 9 Now Open!</h3>
+                    <p class="mb-0 lead">We're excited to announce our expansion! Starting this year at Global Talent Our students are stepping into the first year of secondary education, building on their strong foundation from middle school. 
+                    Tomorrow, we celebrate the new academic year and look forward to shaping bright futures..</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background: #f8f9fa;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">What Makes Our Curriculum Special</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-language fa-4x" style="color: #198754;"></i>
+                    </div>
+                    <h4>English Language Focus</h4>
+                    <p>Comprehensive ESL program ensuring students develop strong English communication skills for global opportunities.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-palette fa-4x" style="color: #0d6efd;"></i>
+                    </div>
+                    <h4>Activity-Based Learning</h4>
+                    <p>Hands-on activities and projects that make learning fun, engaging, and memorable for every student.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-desktop fa-4x" style="color: #6f42c1;"></i>
+                    </div>
+                    <h4>Technology Integration</h4>
+                    <p>Computer classes and digital literacy programs preparing students for the modern digital world.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

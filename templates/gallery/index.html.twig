@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gallery - Global Talent School{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #ffc107 0%, #ca9502 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Photo Gallery</h1>
+        <p class="lead">Capturing memorable moments at Global Talent School</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="mb-4 text-center">
+            <a href="{{ path('gallery') }}" class="btn btn-outline-primary me-2">All</a>
+            <a href="{{ path('gallery', {category: 'events'}) }}" class="btn btn-outline-primary me-2">Events</a>
+            <a href="{{ path('gallery', {category: 'classrooms'}) }}" class="btn btn-outline-primary me-2">Classrooms</a>
+            <a href="{{ path('gallery', {category: 'activities'}) }}" class="btn btn-outline-primary">Activities</a>
+        </div>
+
+        {% if images|length > 0 %}
+        <div class="row g-3">
+            {% for image in images %}
+            <div class="col-lg-4 col-md-6">
+                <a href="{{ image.image }}" data-lightbox="gallery" data-title="{{ image.title }}">
+                    <div style="height: 300px; overflow: hidden; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s ease;">
+                        <img src="{{ image.image }}" alt="{{ image.title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </a>
+                <p class="text-center mt-2 mb-0">{{ image.title }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            <i class="fas fa-images fa-3x mb-3"></i>
+            <h4>Gallery Coming Soon!</h4>
+            <p class="mb-0">We're currently preparing our photo gallery. Please check back soon to see our campus and activities.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+{% endblock %}

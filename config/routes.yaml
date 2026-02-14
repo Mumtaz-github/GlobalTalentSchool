@@ -1,0 +1,16 @@
+# Redirect root to English by default
+index_redirect:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController
+    defaults:
+        route: home
+        _locale: en
+        permanent: false
+
+# Main routes with locale prefix
+controllers:
+    resource: '../src/Controller/'
+    type: attribute
+    prefix: '/{_locale}'
+    requirements:
+        _locale: 'en|ur|ps'

@@ -1,0 +1,326 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+<div class="container">
+<a class="navbar-brand" href="{{ path('home') }}">
+<img src="{{ asset('uploads/logo/logo.jpg') }}" alt="Logo" height="80">
+<span>{{ 'site_name'|trans }}</span>
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="{{ path('home') }}">{{ 'home'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('about') }}">{{ 'about'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('academics') }}">{{ 'academics'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('faculty') }}">{{ 'faculty'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('admissions') }}">{{ 'admissions'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('facilities') }}">{{ 'facilities'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('gallery') }}">{{ 'gallery'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('news_list') }}">{{ 'news'|trans }}</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">{{ 'contact'|trans }}</a></li>
+<!-- Language Switcher -->
+{# <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown">
+<i class="fas fa-globe"></i> Language
+</a>
+<ul class="dropdown-menu dropdown-menu-end">
+<li><a class="dropdown-item" href="#" onclick="setTranslateLang('en')">🇬🇧 English</a></li>
+<li><a class="dropdown-item" href="#" onclick="setTranslateLang('ur')">🇵🇰 اردو</a></li>
+<li><a class="dropdown-item" href="#" onclick="setTranslateLang('ps')">🇵🇰 پښتو</a></li>
+<li><a class="dropdown-item" href="#" onclick="setTranslateLang('ar')">🇸🇦 Arabic</a></li>
+<li><a class="dropdown-item" href="#" onclick="setTranslateLang('fr')">🇫🇷 French</a></li>
+</ul> #}
+<!-- Language Switcher -->
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+<i class="fas fa-globe"></i> Language
+</a>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+<li>
+<a class="dropdown-item" href="#" onclick="setTranslateLang('en'); return false;">
+🇬🇧 English
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="#" onclick="setTranslateLang('ur'); return false;">
+🇵🇰 اردو (Urdu)
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="#" onclick="setTranslateLang('ps'); return false;">
+🇦🇫 پښتو (Pashto)
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="#" onclick="setTranslateLang('ar'); return false;">
+🇸🇦 العربية (Arabic)
+</a>
+</li>
+<li>
+<a class="dropdown-item" href="#" onclick="setTranslateLang('fr'); return false;">
+🇫🇷 Français (French)
+</a>
+</li>
+</ul>
+</li>
+{# ================= AUTH LINKS ================= #}
+
+{% if app.user %}
+{# Logged-in user #}
+
+{% if is_granted('ROLE_ADMIN') %}
+<li class="nav-item">
+<a class="nav-link fw-bold text-success"
+href="{{ path('admin_dashboard', {'_locale': app.request.locale}) }}">
+<i class="fas fa-user-shield"></i> Admin
+</a>
+</li>
+{% endif %}
+
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+<i class="fas fa-user"></i> {{ app.user.email }}
+</a>
+<ul class="dropdown-menu dropdown-menu-end">
+<li>
+<a class="dropdown-item text-danger"
+href="{{ path('app_logout', {'_locale': app.request.locale}) }}">
+<i class="fas fa-sign-out-alt"></i> Logout
+</a>
+</li>
+</ul>
+</li>
+
+{% else %}
+{# Guest user #}
+<li class="nav-item">
+<a class="nav-link fw-bold"
+href="{{ path('app_login', {'_locale': app.request.locale}) }}">
+<i class="fas fa-sign-in-alt"></i> Login
+</a>
+</li>
+{% endif %}
+
+</li>
+
+</ul>
+</div>
+</div>
+</nav>
+
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+<div class="alert alert-{{ label }} alert-dismissible fade show m-3" role="alert">
+{{ message|trans }}
+<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
+{% endfor %}
+{% endfor %}
+
+this is navbar html twig
+*************************************
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); padding: 60px 0; color: white;">
+<div class="container">
+<h1 class="display-5 fw-bold"><i class="fas fa-user-shield"></i> Admin Dashboard</h1>
+<p class="lead">Welcome, {{ app.user.email }}</p>
+</div>
+</div>
+
+<section class="py-5">
+<div class="container">
+<div class="row g-4 mb-5">
+<div class="col-md-3">
+<div class="card text-center p-4" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); color: white;">
+<i class="fas fa-book fa-3x mb-3"></i>
+<h2 class="display-4 mb-0">{{ totalCourses }}</h2>
+<p class="mb-0">Total Courses</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card text-center p-4" style="background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); color: white;">
+<i class="fas fa-chalkboard-teacher fa-3x mb-3"></i>
+<h2 class="display-4 mb-0">{{ totalFaculty }}</h2>
+<p class="mb-0">Faculty Members</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card text-center p-4" style="background: linear-gradient(135deg, #20c997 0%, #198754 100%); color: white;">
+<i class="fas fa-newspaper fa-3x mb-3"></i>
+<h2 class="display-4 mb-0">{{ totalNews }}</h2>
+<p class="mb-0">News Articles</p>
+</div>
+</div>
+<div class="col-md-3">
+<div class="card text-center p-4" style="background: linear-gradient(135deg, #fd7e14 0%, #ca6510 100%); color: white;">
+<i class="fas fa-envelope fa-3x mb-3"></i>
+<h2 class="display-4 mb-0">{{ recentInquiries|length }}</h2>
+<p class="mb-0">Recent Inquiries</p>
+</div>
+</div>
+</div>
+
+<div class="card shadow">
+<div class="card-header bg-success text-white">
+<h4 class="mb-0"><i class="fas fa-inbox"></i> Recent Inquiries</h4>
+</div>
+<div class="card-body">
+{% if recentInquiries|length > 0 %}
+<div class="table-responsive">
+<table class="table table-hover">
+<thead>
+<tr>
+<th>Date</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Type</th>
+<th>Message</th>
+</tr>
+</thead>
+<tbody>
+{% for inquiry in recentInquiries %}
+<tr>
+<td>{{ inquiry.createdAt|date('Y-m-d H:i') }}</td>
+<td>{{ inquiry.name }}</td>
+<td><a href="mailto:{{ inquiry.email }}">{{ inquiry.email }}</a></td>
+<td>{{ inquiry.phone ?? 'N/A' }}</td>
+<td>
+<span class="badge bg-{{ inquiry.type == 'admission' ? 'primary' : 'info' }}">
+{{ inquiry.type|upper }}
+</span>
+</td>
+<td>{{ inquiry.message|slice(0, 50) }}...</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}
+<p class="text-center text-muted my-4">No inquiries yet.</p>
+{% endif %}
+</div>
+</div>
+
+<div class="mt-4 text-center">
+<a href="{{ path('home') }}" class="btn btn-outline-primary">
+<i class="fas fa-home"></i> Back to Website
+</a>
+</div>
+</div>
+</section>
+{% endblock %}
+
+this is dashboard html twig
+
+*************************************************************************
+access_control:
+# Admin routes (all languages)
+- { path: ^/\w+/admin, roles: ROLE_ADMIN }
+# Admissions management
+- { path: ^/\w+/admissions/manage, roles: ROLE_ADMISSIONS }
+# Faculty management
+- { path: ^/\w+/faculty/manage, roles: ROLE_FACULTY }
+# Student dashboard
+- { path: ^/\w+/student, roles: ROLE_STUDENT }
+# Login page - allow everyone
+- { path: ^/\w+/login, roles: PUBLIC_ACCESS }
+
+role_hierarchy:
+ROLE_ADMISSIONS: ROLE_USER
+ROLE_FACULTY: ROLE_USER
+ROLE_STUDENT: ROLE_USER
+ROLE_ADMIN:
+- ROLE_ADMISSIONS
+- ROLE_FACULTY
+- ROLE_STUDENT
+ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+when@test:
+security:
+password_hashers:
+Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+algorithm: auto
+cost: 4
+time_cost: 3
+memory_cost: 10
+
+
+this is security.yaml
+
+**********************************************************
+<?php
+
+// namespace App\DataFixtures;
+
+// use Doctrine\Bundle\FixturesBundle\Fixture;
+// use Doctrine\Persistence\ObjectManager;
+
+// class UserFixture extends Fixture
+// {
+// public function load(ObjectManager $manager): void
+// {
+// // $product = new Product();
+// // $manager->persist($product);
+
+// $manager->flush();
+// }
+// }
+
+
+namespace App\DataFixtures;
+
+use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+class UserFixture extends Fixture
+{
+private UserPasswordHasherInterface $passwordHasher;
+
+public function __construct(UserPasswordHasherInterface $passwordHasher)
+{
+$this->passwordHasher = $passwordHasher;
+}
+
+public function load(ObjectManager $manager): void
+{
+// Admin user
+$admin = new User();
+$admin->setEmail('admin@school.com');
+$admin->setRoles(['ROLE_ADMIN']);
+$admin->setPassword($this->passwordHasher->hashPassword($admin, 'admin123'));
+$manager->persist($admin);
+
+// Admissions staff
+$admissions = new User();
+$admissions->setEmail('admissions@school.com');
+$admissions->setRoles(['ROLE_ADMISSIONS']);
+$admissions->setPassword($this->passwordHasher->hashPassword($admissions, 'admissions123'));
+$manager->persist($admissions);
+
+// Faculty
+$faculty = new User();
+$faculty->setEmail('teacher@school.com');
+$faculty->setRoles(['ROLE_FACULTY']);
+$faculty->setPassword($this->passwordHasher->hashPassword($faculty, 'teacher123'));
+$manager->persist($faculty);
+
+// Student
+$student = new User();
+$student->setEmail('student@school.com');
+$student->setRoles(['ROLE_STUDENT']);
+$student->setPassword($this->passwordHasher->hashPassword($student, 'student123'));
+$manager->persist($student);
+
+$manager->flush();
+}
+}
+
+this is userfixture

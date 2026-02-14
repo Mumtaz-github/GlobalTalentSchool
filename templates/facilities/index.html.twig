@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facilities - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Our Facilities</h1>
+        <p class="lead">State-of-the-art resources for comprehensive learning</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">World-Class Infrastructure</h2>
+            <p class="lead mt-4">Creating an environment where students thrive</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #198754 0%, #146c43 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-laptop-code fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #198754;">Computer Labs</h4>
+                        <p class="card-text">Modern computer labs equipped with the latest technology to teach coding, digital literacy, and computer fundamentals to all students.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-flask fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #0d6efd;">Science Laboratory</h4>
+                        <p class="card-text">Well-equipped science lab for hands-on experiments and practical learning in physics, chemistry, and biology.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-book-open fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #6f42c1;">Library</h4>
+                        <p class="card-text">Extensive library with a diverse collection of books, reference materials, and digital resources for all grade levels.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #20c997 0%, #198754 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-football-ball fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #20c997;">Sports Facilities</h4>
+                        <p class="card-text">Playgrounds and sports equipment promoting physical fitness, teamwork, and healthy competition among students.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #fd7e14 0%, #ca6510 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-palette fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #fd7e14;">Activity Rooms</h4>
+                        <p class="card-text">Dedicated spaces for art, music, drama, and other creative activities that nurture students' talents and interests.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100">
+                    <div style="height: 250px; background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-chalkboard-teacher fa-6x text-white"></i>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #dc3545;">Smart Classrooms</h4>
+                        <p class="card-text">Modern, well-lit classrooms with interactive learning tools creating an engaging educational environment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background: #f8f9fa;">
+    <div class="container text-center">
+        <h2 class="section-title mb-4">Visit Our Campus</h2>
+        <p class="lead mb-4">Experience our facilities firsthand! Schedule a campus tour today.</p>
+        <a href="{{ path('contact') }}" class="btn btn-primary btn-lg">Schedule a Visit</a>
+    </div>
+</section>
+{% endblock %}

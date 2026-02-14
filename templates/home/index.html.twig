@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home - Global Talent School{% endblock %}
+
+{% block body %}
+<!-- Hero Carousel -->
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); height: 400px; display: flex; align-items: center;">
+                <div class="container text-white text-center">
+                    <h1 class="display-3 fw-bold mb-4 animate-fadeIn">Admissions Open 2026!</h1>
+                    <p class="lead mb-4 animate-fadeIn" style="animation-delay: 0.2s;">Nurturing Global Talent in Bara Bandai, Swat</p>
+                    <a href="{{ path('admissions') }}" class="btn btn-light btn-lg animate-fadeIn" style="animation-delay: 0.4s;">Apply Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); height: 400px; display: flex; align-items: center;">
+                <div class="container text-white text-center">
+                    <h1 class="display-3 fw-bold mb-4">Excellence in Education</h1>
+                    <p class="lead mb-4">From Playgroup to Grade 8, Expanding to Grades 9 & 10</p>
+                    <a href="{{ path('academics') }}" class="btn btn-light btn-lg">Explore Programs <i class="fas fa-book-open"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div style="background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); height: 400px; display: flex; align-items: center;">
+                <div class="container text-white text-center">
+                    <h1 class="display-3 fw-bold mb-4">Where Learning Meets Fun</h1>
+                    <p class="lead mb-4">Activity-Based Learning • ESL • Computer Education</p>
+                    <a href="{{ path('about') }}" class="btn btn-light btn-lg">Learn More <i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Highlights Section -->
+<section class="py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Why Choose Global Talent School?</h2>
+            <p class="lead mt-4">Building confident, globally-minded leaders of tomorrow</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-globe fa-4x" style="color: #198754;"></i>
+                    </div>
+                    <h4>English as Second Language (ESL)</h4>
+                    <p>Comprehensive ESL program to build English confidence and fluency from an early age.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-laptop fa-4x" style="color: #198754;"></i>
+                    </div>
+                    <h4>Computer Education</h4>
+                    <p>Modern computer labs and IT curriculum preparing students for the digital world.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-running fa-4x" style="color: #198754;"></i>
+                    </div>
+                    <h4>Activity-Based Learning</h4>
+                    <p>Fun, hands-on activities that make learning engaging and memorable for every child.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Latest News Section -->
+{% if latestNews|length > 0 %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Latest News & Events</h2>
+            <p class="lead mt-4">Stay updated with what's happening at GTS</p>
+        </div>
+        <div class="row g-4">
+            {% for news in latestNews %}
+            <div class="col-md-4">
+                <div class="card h-100">
+                    {% if news.image %}
+                    <img src="{{ news.image }}" class="card-img-top" alt="{{ news.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div style="height: 200px; background: linear-gradient(135deg, #198754 0%, #146c43 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-newspaper fa-4x text-white"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <small class="text-muted"><i class="far fa-calendar"></i> {{ news.date|date('F d, Y') }}</small>
+                        <h5 class="card-title mt-2">{{ news.title }}</h5>
+                        <p class="card-text">{{ news.excerpt[:120] }}...</p>
+                        <a href="{{ path('news_detail', {id: news.id}) }}" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ path('news_list') }}" class="btn btn-primary">View All News</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- CTA Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #198754 0%, #146c43 100%); color: white;">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">Ready to Join Our Community?</h2>
+        <p class="lead mb-4">Enroll your child today and give them the gift of quality education</p>
+        <a href="{{ path('admissions') }}" class="btn btn-light btn-lg me-3">Apply for Admission</a>
+        <a href="{{ path('contact') }}" class="btn btn-outline-light btn-lg">Contact Us</a>
+    </div>
+</section>
+{% endblock %}

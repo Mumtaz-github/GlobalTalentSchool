@@ -1,0 +1,265 @@
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('home') }}">
+            <img src="{{ asset('uploads/logo/logo.jpg') }}" alt="Logo" height="80">
+            <span>{{ 'site_name'|trans }}</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path('home') }}">{{ 'home'|trans }}</a></li>
+                
+                <!-- About Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        About
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('about') }}">About Us</a></li>
+                        <li><a class="dropdown-item" href="{{ path('faculty') }}">Our Faculty</a></li>
+                        <li><a class="dropdown-item" href="{{ path('facilities') }}">Facilities</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ path('academics') }}">Academics</a></li>
+                {# <li class="nav-item"><a class="nav-link" href="{{ path('admissions') }}">Admissions</a></li> #}
+                <li class="nav-item">
+    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#admissionModal">
+        <i class="fas fa-file-alt"></i> Apply Now
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ path('admissions') }}">Admissions Info</a>
+</li>
+
+
+                <!-- Media Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Media
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ path('gallery') }}">Gallery</a></li>
+                        <li><a class="dropdown-item" href="{{ path('news_list') }}">News & Events</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+                
+                <!-- Language Switcher -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('en'); return false;">🇬🇧 English</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('ur'); return false;">🇵🇰 اردو</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('ps'); return false;">🇦🇫 پښتو</a></li>
+                    </ul>
+                </li>
+
+                <!-- User/Admin Dropdown -->
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold text-success" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle"></i> {{ app.user.email|split('@')[0] }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                        {#admin part#}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-item" href="{{ path('admin_dashboard') }}">
+                                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_course_index') }}">
+                                    <i class="fas fa-book"></i> Manage Courses
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_faculty_index') }}">
+                                    <i class="fas fa-chalkboard-teacher"></i> Manage Faculty
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_news_index') }}">
+                                    <i class="fas fa-newspaper"></i> Manage News
+                                </a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_inquiry_index') }}">
+                                    <i class="fas fa-envelope"></i> View Inquiries
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+                            
+                            {% if is_granted('ROLE_ADMISSIONS') and not is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-item" href="{{ path('admin_inquiry_index') }}">
+                                    <i class="fas fa-clipboard-list"></i> Admissions Panel
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_FACULTY') and not is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-user-graduate"></i> Faculty Panel
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+
+                            {% if is_granted('ROLE_STUDENT') and not is_granted('ROLE_ADMIN') %}
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="fas fa-graduation-cap"></i> Student Portal
+                                </a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
+                            
+                            <li><a class="dropdown-item text-danger" href="{{ path('app_logout') }}">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-primary" href="{{ path('app_login') }}">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('home') }}">
+            <img src="{{ asset('uploads/logo/logo.jpg') }}" alt="Logo" height="80">
+            <span>{{ 'site_name'|trans }}</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path('home') }}">{{ 'home'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('about') }}">{{ 'about'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('academics') }}">{{ 'academics'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('faculty') }}">{{ 'faculty'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('admissions') }}">{{ 'admissions'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('facilities') }}">{{ 'facilities'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('gallery') }}">{{ 'gallery'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('news_list') }}">{{ 'news'|trans }}</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">{{ 'contact'|trans }}</a></li>
+                
+                <!-- Language Switcher -->
+                {# <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-globe"></i> Language
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('en')">🇬🇧 English</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('ur')">🇵🇰 اردو</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('ps')">🇵🇰 پښتو</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('ar')">🇸🇦 Arabic</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="setTranslateLang('fr')">🇫🇷 French</a></li>
+                        
+                    </ul> #}
+                    <!-- Language Switcher -->
+{# <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-globe"></i> Language
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+        <li>
+            <a class="dropdown-item" href="#" onclick="setTranslateLang('en'); return false;">
+                🇬🇧 English
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" onclick="setTranslateLang('ur'); return false;">
+                🇵🇰 اردو (Urdu)
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" onclick="setTranslateLang('ps'); return false;">
+                🇦🇫 پښتو (Pashto)
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" onclick="setTranslateLang('ar'); return false;">
+                🇸🇦 العربية (Arabic)
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item" href="#" onclick="setTranslateLang('fr'); return false;">
+                🇫🇷 Français (French)
+            </a>
+        </li>
+    </ul>
+</li>
+                    {# ================= AUTH LINKS ================= #}
+ {# 
+{% if app.user %}
+   {# Logged-in user #}
+ {# 
+    {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+            <a class="nav-link fw-bold text-success"
+               href="{{ path('admin_dashboard', {'_locale': app.request.locale}) }}">
+                <i class="fas fa-user-shield"></i> Admin
+            </a>
+        </li>
+    {% endif %}
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            <i class="fas fa-user"></i> {{ app.user.email }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a class="dropdown-item text-danger"
+                   href="{{ path('app_logout', {'_locale': app.request.locale}) }}">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
+    </li>
+
+{% else %}
+    {# Guest user #}
+   {#   <li class="nav-item">
+        <a class="nav-link fw-bold"
+           href="{{ path('app_login', {'_locale': app.request.locale}) }}">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </a>
+    </li>
+{% endif %}
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+  {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show m-3" role="alert">
+            {{ message|trans }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endfor %} #} 

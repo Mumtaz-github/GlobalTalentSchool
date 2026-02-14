@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ newsItem.title }} - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #20c997 0%, #198754 100%); padding: 80px 0; color: white;">
+    <div class="container">
+        <a href="{{ path('news_list') }}" class="btn btn-outline-light mb-4">
+            <i class="fas fa-arrow-left"></i> Back to News
+        </a>
+        <h1 class="display-4 fw-bold">{{ newsItem.title }}</h1>
+        <p class="lead"><i class="far fa-calendar"></i> {{ newsItem.date|date('F d, Y') }}</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                {% if newsItem.image %}
+                <img src="{{ newsItem.image }}" class="img-fluid rounded mb-4" alt="{{ newsItem.title }}">
+                {% endif %}
+                
+                <div class="card border-0 shadow-sm p-4">
+                    {{ newsItem.content|nl2br }}
+                </div>
+
+                <div class="mt-4">
+                    <a href="{{ path('news_list') }}" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Back to All News
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

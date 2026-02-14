@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h4 class="modal-title"> </h4>
+      
+   
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+</div>
+<div class="modal-body p-0">
+    <p class="text-muted mb-4">
+        <i class="fas fa-info-circle"></i> Please fill out the form below. We'll redirect you to WhatsApp to complete your application.
+    </p>
+
+    {{ form_start(form, {'attr': {'id': 'admissionForm'}}) }}
+        
+        <h5 class="border-bottom pb-2 mb-3" style="color: #198754;">
+            <i class="fas fa-user-graduate"></i> Student Information
+        </h5>
+        
+        <div class="mb-3">
+            {{ form_row(form.student_name) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.grade) }}
+        </div>
+
+        <h5 class="border-bottom pb-2 mb-3 mt-4" style="color: #198754;">
+            <i class="fas fa-users"></i> Parent/Guardian Information
+        </h5>
+
+        <div class="mb-3">
+            {{ form_row(form.parent_name) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.email) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.phone) }}
+        </div>
+
+        <h5 class="border-bottom pb-2 mb-3 mt-4" style="color: #198754;">
+            <i class="fas fa-comment-dots"></i> Additional Information
+        </h5>
+
+        <div class="mb-3">
+            {{ form_row(form.previous_school) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_row(form.comments) }}
+        </div>
+
+        {# <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> After submitting, you'll be redirected to WhatsApp to send your application directly to our admissions team.
+        </div> #}
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success btn-lg">
+                <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+        </div>
+
+    {{ form_end(form) }}
+</div>

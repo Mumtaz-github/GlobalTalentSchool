@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faculty - Global Talent School{% endblock %}
+
+{% block body %}
+<div style="background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); padding: 80px 0; color: white;">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold">Our Faculty</h1>
+        <p class="lead">Dedicated educators committed to student success</p>
+    </div>
+</div>
+
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Meet Our Team</h2>
+            <p class="lead mt-4">Experienced, passionate teachers who inspire excellence</p>
+        </div>
+
+        {% if faculty|length > 0 %}
+        <div class="row g-4">
+            {% for member in faculty %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 text-center">
+                    {% if member.photo %}
+                    <img src="{{ member.photo }}" class="card-img-top" alt="{{ member.name }}" style="height: 300px; object-fit: cover;">
+                    {% else %}
+                    <div style="height: 300px; background: linear-gradient(135deg, #6f42c1 0%, #5a32a3 100%); display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-tie fa-6x text-white"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h4 class="card-title">{{ member.name }}</h4>
+                        <p class="text-muted mb-3">{{ member.designation }}</p>
+                        {% if member.bio %}
+                        <p class="card-text">{{ member.bio }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            <i class="fas fa-info-circle fa-2x mb-3"></i>
+            <h4>Faculty profiles coming soon!</h4>
+            <p class="mb-0">We're currently updating our faculty information. Please check back soon.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="py-5" style="background: #f8f9fa;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Join Our Team</h2>
+            <p class="lead mt-4">Are you a passionate educator? We'd love to hear from you!</p>
+        </div>
+        <div class="text-center">
+            <a href="{{ path('contact') }}" class="btn btn-primary btn-lg">Contact Us About Career Opportunities</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
